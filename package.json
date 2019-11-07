@@ -7,7 +7,7 @@
     "start-server": "npm run build:backend && node dist/server.js",
     "build:frontend": "webpack --mode development --config=./webpack.frontend.js",
     "build:backend": "webpack --mode development --config=./webpack.backend.js",
-    "check-style": "eslint src/client.tsx"
+    "check-style": "eslint src/client.tsx src/server.tsx"
   },
   "author": "",
   "license": "ISC",
