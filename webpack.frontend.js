@@ -1,5 +1,4 @@
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
@@ -7,25 +6,16 @@ module.exports = [
     {
         entry: './src/client.tsx',
         output: {
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, 'dist/assets'),
             filename: 'client.js',
             publicPath: '/'
         },
-        target: 'node',
-        node: {
-            console: false,
-            global: false,
-            process: false,
-            Buffer: false,
-            __filename: false,
-            __dirname: false
-        },
-        externals: nodeExternals(),
+        target: "web",
         plugins: [new ExtractTextPlugin('index.css')],
         module: {
             rules: [
                 {
-                    test: /(\.js)|(\.tsx)$/,
+                    test: /(\.js)|(\.ts)|(\.tsx)$/,
                     use: [{
                         loader: 'babel-loader'
                     }]
@@ -33,7 +23,7 @@ module.exports = [
             ],
         },
         resolve: {
-            extensions: ['.js', '.jsx','.tsx']
+            extensions: ['.js', '.ts','.jsx','.tsx']
         }
     }
 ];
