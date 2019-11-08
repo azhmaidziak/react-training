@@ -11,7 +11,7 @@ server.use("/dist", Express.static(process.cwd() + "/dist"));
 
 server.get("/", (req, res) => {
   const html = renderToString(<AppDom menu={page.menu} body={page.body} />);
-  res.send(template(html, page));
+  res.send(template(html));
 });
 
 server.listen(5555);

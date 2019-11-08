@@ -5,18 +5,16 @@ export const page: Page = {
   body: { bodyText: "Hello React!" }
 };
 
-export const template = (html: string, page: Page): string =>
+export const template = (html: string): string =>
   `<!DOCTYPE html>
     <html lang="en">
       <head>
-        <title>title</title>
+        <meta charset="utf-8" />
+        <meta name="theme-color" content="#000000" />
+        <title>Movies Application</title>
       </head>      
       <body>
         <div id="root">${html}</div>
-      <script>window.__PRELOADED_STATE__ = ${JSON.stringify(page).replace(
-        /</g,
-        "\\u003c"
-      )}</script>  
       <script src="/assets/client.js"></script>
       </body>    
     </html>`;
