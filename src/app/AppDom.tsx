@@ -5,14 +5,17 @@ import { Page } from "../models";
 
 export default class AppDom extends React.Component<Page> {
   render(): React.ReactNode {
-    const { menu, body }: Page = this.props;
+    const {
+      menu: { items: items },
+      body: { bodyText: bodyText }
+    }: Page = this.props;
     return (
       <React.Fragment>
         <div className="app_menu">
-          <MenuDom items={menu.items} />
+          <MenuDom items={items} />
         </div>
         <div className="app_body">
-          <BodyDom bodyText={body.bodyText} />
+          <BodyDom bodyText={bodyText} />
         </div>
       </React.Fragment>
     );
