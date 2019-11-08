@@ -2,17 +2,17 @@ import * as React from "react";
 import MenuDom from "../menu";
 import BodyDom from "../body";
 import { Page } from "../models";
-import { ReactNode } from "react";
 
 export default class AppDom extends React.Component<Page> {
-  render(): ReactNode {
+  render(): React.ReactNode {
+    const { menu, body }: Page = this.props;
     return (
       <React.Fragment>
-        <div className="menu">
-          <MenuDom items={this.props.menu.items} />
+        <div className="app_menu">
+          <MenuDom items={menu.items} />
         </div>
-        <div className="body">
-          <BodyDom bodyText={this.props.body.bodyText} />
+        <div className="app_body">
+          <BodyDom bodyText={body.bodyText} />
         </div>
       </React.Fragment>
     );

@@ -1,14 +1,13 @@
 import * as React from "react";
 import MenuDomItem from "./item";
-import { MenuList } from "../models";
-import { ReactNode } from "react";
+import { MenuItem, MenuList } from "../models";
 
 export default class MenuDom extends React.Component<MenuList> {
-  render(): ReactNode {
+  render(): React.ReactNode {
     return (
       <ul>
-        {this.props.items.map(item => (
-          <MenuDomItem key={item.key} text={item.text} />
+        {this.props.items.map(({ key, text }: MenuItem) => (
+          <MenuDomItem key={key} text={text} />
         ))}
       </ul>
     );
