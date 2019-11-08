@@ -1,3 +1,3 @@
-import AppDom from './AppDom';
+import AppDom from "./AppDom";
 
 export default AppDom;

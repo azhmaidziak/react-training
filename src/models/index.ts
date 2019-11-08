@@ -1,17 +1,17 @@
 export type Body = {
-    bodyText: string;
-}
+  bodyText: string;
+};
 
 export type Page = {
-    menu: MenuList;
-    body: Body;
-}
+  menu: MenuList;
+  body: Body;
+};
 
 export type MenuList = {
-    readonly items: Array<MenuItem>;
-}
+  readonly items: Array<MenuItem>;
+};
 
 export type MenuItem = {
-    readonly key: string;
-    readonly text: string;
-}
+  readonly key: string;
+  readonly text: string;
+};
