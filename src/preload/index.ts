@@ -12,6 +12,7 @@ export const template = (html: string): string =>
         <meta charset="utf-8" />
         <meta name="theme-color" content="#000000" />
         <title>Movies Application</title>
+        <link rel="stylesheet" type="text/css" href="/assets/index.css">
       </head>      
       <body>
         <div id="root">${html}</div>

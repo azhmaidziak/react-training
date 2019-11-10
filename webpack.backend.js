@@ -1,6 +1,6 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = [
   {
@@ -20,9 +20,25 @@ module.exports = [
       __dirname: false
     },
     externals: nodeExternals(),
-    plugins: [new ExtractTextPlugin("index.css")],
+    plugins: [new CleanWebpackPlugin()],
+
     module: {
       rules: [
+        {
+          test: /\.(css|sass)$/,
+          use: [
+            { loader: "isomorphic-style-loader" },
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  localIdentName: "[path][name]__[local]--[hash:base64:5]"
+                }
+              }
+            },
+            { loader: "sass-loader" }
+          ]
+        },
         {
           test: /(\.js)|(\.ts)|(\.tsx)$/,
           use: [
@@ -34,7 +50,7 @@ module.exports = [
       ]
     },
     resolve: {
-      extensions: [".js", ".ts", ".jsx", ".tsx"]
+      extensions: [".js", ".ts", ".jsx", ".tsx", ".css"]
     }
   }
 ];

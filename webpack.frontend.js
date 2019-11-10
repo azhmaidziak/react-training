@@ -1,5 +1,6 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = [
   {
@@ -10,11 +11,28 @@ module.exports = [
       publicPath: "/"
     },
     target: "web",
-    plugins: [new ExtractTextPlugin("index.css")],
+    plugins: [new CleanWebpackPlugin(), new ExtractTextPlugin("index.css")],
     module: {
       rules: [
         {
-          test: /(\.js)|(\.ts)|(\.tsx)$/,
+          test: /\.(css|sass)$/,
+          use: ExtractTextPlugin.extract({
+            fallback: "style-loader",
+            use: [
+              {
+                loader: "css-loader",
+                options: {
+                  modules: {
+                    localIdentName: "[path][name]__[local]--[hash:base64:5]"
+                  }
+                }
+              },
+              { loader: "sass-loader" }
+            ]
+          })
+        },
+        {
+          test: /\.(js|ts|tsx)$/,
           use: [
             {
               loader: "babel-loader"
@@ -24,7 +42,7 @@ module.exports = [
       ]
     },
     resolve: {
-      extensions: [".js", ".ts", ".jsx", ".tsx"]
+      extensions: [".js", ".ts", ".jsx", ".tsx", ".css"]
     }
   }
 ];
