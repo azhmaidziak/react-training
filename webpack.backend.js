@@ -1,8 +1,9 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
-module.exports = [
+module.exports = env => [
   {
     entry: "./src/server.tsx",
     output: {
@@ -21,7 +22,29 @@ module.exports = [
     },
     externals: nodeExternals(),
     plugins: [new CleanWebpackPlugin()],
-
+    optimization: {
+      minimize: !!env.production,
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          terserOptions: {
+            parse: {
+              ecma: 8
+            },
+            compress: {
+              inline: 2
+            },
+            mangle: {
+              safari10: true
+            },
+            output: {
+              comments: false
+            }
+          }
+        })
+      ]
+    },
     module: {
       rules: [
         {
@@ -40,7 +63,7 @@ module.exports = [
           ]
         },
         {
-          test: /(\.js)|(\.ts)|(\.tsx)$/,
+          test: /\.(js|ts|tsx)$/,
           use: [
             {
               loader: "babel-loader"

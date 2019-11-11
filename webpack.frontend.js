@@ -1,8 +1,9 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
-module.exports = [
+module.exports = env => [
   {
     entry: "./src/client.tsx",
     output: {
@@ -12,6 +13,29 @@ module.exports = [
     },
     target: "web",
     plugins: [new CleanWebpackPlugin(), new ExtractTextPlugin("index.css")],
+    optimization: {
+      minimize: !!env.production,
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          terserOptions: {
+            parse: {
+              ecma: 8
+            },
+            compress: {
+              inline: 2
+            },
+            mangle: {
+              safari10: true
+            },
+            output: {
+              comments: false
+            }
+          }
+        })
+      ]
+    },
     module: {
       rules: [
         {
