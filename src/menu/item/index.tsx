@@ -1,7 +1,7 @@
 import * as React from "react";
 import { MenuItem } from "../../models";
 
-const MenuDomItem: React.FunctionComponent<MenuItem> = (
+const MenuDomItem: React.FC<MenuItem> = (
   item: React.PropsWithChildren<MenuItem>
 ) => {
   const [count, setCount] = React.useState(0);

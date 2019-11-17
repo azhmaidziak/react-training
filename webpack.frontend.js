@@ -14,7 +14,7 @@ module.exports = env => [
     target: "web",
     plugins: [new CleanWebpackPlugin(), new ExtractTextPlugin("index.css")],
     optimization: {
-      minimize: !!env.production,
+      minimize: !!env && !!env.production,
       minimizer: [
         new TerserPlugin({
           cache: true,

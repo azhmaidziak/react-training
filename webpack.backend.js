@@ -23,7 +23,7 @@ module.exports = env => [
     externals: nodeExternals(),
     plugins: [new CleanWebpackPlugin()],
     optimization: {
-      minimize: !!env.production,
+      minimize: !!env && !!env.production,
       minimizer: [
         new TerserPlugin({
           cache: true,
