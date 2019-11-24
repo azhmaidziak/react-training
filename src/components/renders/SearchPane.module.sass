@@ -1,0 +1,27 @@
+.search_pane
+  display: grid
+
+  .search_bar
+    display: inline-flex
+
+  .search_by
+    display: inline-flex
+
+    input
+      display: none
+
+      &:checked + label
+        background-color: #F65261
+
+    label
+      display: grid
+      width: 81px
+      height: 35px
+      text-align: center
+      color: white
+      background-color: rgba(66, 66, 66, 0.68)
+
+      &:before
+        padding: 20px 8px 20px 8px
+
+
