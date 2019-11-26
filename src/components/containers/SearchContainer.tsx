@@ -1,8 +1,8 @@
 import * as React from "react";
-import { connect } from "react-redux";
-import { Page, SearchQuery } from "../../models";
-import SearchPane from "../renders/SearchPane";
-import { searchBy } from "./options.json";
+import {connect} from "react-redux";
+import {Page, SearchQuery} from "../../models";
+import {SearchPane} from "../renders";
+import {searchBy} from "./options.json";
 
 function onClickToChoose(event: React.MouseEvent): void {
   // behaviour will be added in future

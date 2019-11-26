@@ -10,10 +10,6 @@ const createBatchProcessor = function<T, R>(
 
 export default createBatchProcessor;
 
-type initReducer<T, R> = {
-  apply: (items: T[]) => R[];
-};
-
 type WithFilter<T, R> = {
   apply: (items: T[]) => R[];
 };
