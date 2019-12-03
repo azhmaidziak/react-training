@@ -1,17 +1,37 @@
+@import "../styles/shared"
+
 .search_pane
-  display: grid
+  display: block
+  background: $background_color
+  height: 396px
+  padding: 50px
 
   .search_bar
     display: inline-flex
+    padding: 50px 0 50px 0
+    height: 50px
+    width: 100%
+    input
+      width: 100%
+      border-radius: $middle_border_radius
+    button
+      width: 150px
+      background: $button_active
+      border: none
+      border-radius: $middle_border_radius
+  .search_by label:first-child
+    border-radius: $small_border_radius 0 $small_border_radius 0
 
   .search_by
     display: inline-flex
+    width: 100%
 
+    border-radius: $small_border_radius
     input
       display: none
 
       &:checked + label
-        background-color: #F65261
+        background-color: $button_active
 
     label
       display: grid
@@ -19,7 +39,7 @@
       height: 35px
       text-align: center
       color: white
-      background-color: rgba(66, 66, 66, 0.68)
+      background-color: $button_inactive
 
       &:before
         padding: 20px 8px 20px 8px

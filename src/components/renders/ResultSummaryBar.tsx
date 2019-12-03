@@ -17,7 +17,7 @@ const ResultSummaryBar = ({
     <RadioGroup
       className={styles.sort_by}
       inputs={options}
-      onClick={onClickToChoose}
+      onChange={onClickToChoose}
     />
   </div>
 );

@@ -10,7 +10,7 @@ server.use("/assets", Express.static(process.cwd() + "/dist/assets"));
 server.use("/dist", Express.static(process.cwd() + "/dist"));
 
 server.get("/", (req, res) => {
-  const html = renderToString(<AppDom />);
+  const html = renderToString(<AppDom init={false}/>);
   res.send(template(html));
 });
 

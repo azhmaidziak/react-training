@@ -4,9 +4,9 @@ import { Page, SearchQuery } from "../../models";
 import SearchPane from "../renders/SearchPane";
 import { searchBy } from "./options.json";
 
-function onClickToChoose(event: React.MouseEvent): void {
+function onClickToChoose(event: React.ChangeEvent<HTMLInputElement>): void {
   // behaviour will be added in future
-  console.log(event);
+  console.log(event)
 }
 
 function onClickToSearch(event: React.MouseEvent): void {

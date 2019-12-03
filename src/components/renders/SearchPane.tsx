@@ -14,18 +14,18 @@ const SearchPane = ({
   options: RadioInput[];
   queryString: string;
   onClickToSearch: (e: MouseEvent) => void;
-  onClickToChoose: (e: MouseEvent) => void;
+  onClickToChoose: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }): React.ReactElement => (
   <div className={styles.search_pane}>
     <SearchBar
       className={styles.search_bar}
       queryString={queryString}
-      onClickToSearch={onClickToSearch}
+      button={{label:"search", onClickToSearch:onClickToSearch}}
     />
     <RadioGroup
       className={styles.search_by}
       inputs={options}
-      onClick={onClickToChoose}
+      onChange={onClickToChoose}
     />
   </div>
 );

@@ -6,20 +6,20 @@ import Button from "./elements/Button";
 const SearchBar = ({
   queryString,
   className,
-  onClickToSearch
+  button
 }: {
   queryString: string;
   className: string;
-  onClickToSearch: (e: MouseEvent) => void;
+  button: {label:string, onClickToSearch:(e: MouseEvent) => void}
 }): React.ReactElement => (
   <div className={className}>
     <SearchInput
       id="site-search"
       name="q"
-      label="Search the site:"
+      label=""
       queryString={queryString}
     />
-    <Button label="SEARCH" onClick={onClickToSearch} />
+    <Button label={button.label} onClick={button.onClickToSearch} />
   </div>
 );
 export default SearchBar;
