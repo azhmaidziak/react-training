@@ -1,11 +1,14 @@
+@import "../styles/shared"
+
 .result_summary
   display: inline-flex
+  margin: 20px
   .sort_by
+    border-radius: $small_border_radius
     input
       display: none
-
       &:checked + label
-        background-color: #F65261
+        background-color: $button_active
 
     label
       display: inline-flex
@@ -13,7 +16,7 @@
       height: 35px
       text-align: center
       color: white
-      background-color: rgba(66, 66, 66, 0.68)
+      background: $button_inactive
 
       &:before
         padding: 20px 8px 20px 8px

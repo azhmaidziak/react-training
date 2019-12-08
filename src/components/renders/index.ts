@@ -3,9 +3,4 @@ import ResultSummaryBar from "./ResultSummaryBar";
 import SearchPane from "./SearchPane";
 import ErrorBoundary from "./ErrorBoundary";
 
-export {
-    MoviesResultPane,
-    ResultSummaryBar,
-    SearchPane,
-    ErrorBoundary
-}
+export { MoviesResultPane, ResultSummaryBar, SearchPane, ErrorBoundary };

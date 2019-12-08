@@ -5,9 +5,9 @@ Array [
   <input
     id="id"
     name="name"
-    onClick={[Function]}
+    onChange={[MockFunction]}
     type="radio"
-    value={0}
+    value={1}
   />,
   <label
     htmlFor="id"

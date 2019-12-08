@@ -3,10 +3,10 @@ import { SearchBy } from "../../../models";
 
 const Radio = ({
   input,
-  onClick
+  onChange
 }: {
   input: RadioInput;
-  onClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }): React.ReactElement => (
   <React.Fragment>
     <input
@@ -14,7 +14,7 @@ const Radio = ({
       id={input.id}
       name={input.name}
       value={input.value}
-      onClick={onClick.bind(this)}
+      onChange={onChange}
     />
     <label htmlFor={input.id}>{input.label}</label>
   </React.Fragment>

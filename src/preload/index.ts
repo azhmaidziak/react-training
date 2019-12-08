@@ -1,4 +1,4 @@
-import { Movie, Page } from "../models";
+import { Movie, Page, SearchParameters } from "../models";
 import { MovieMapper, createBatchProcessor } from "../functions";
 import * as filmsJson from "./films.json";
 
@@ -14,6 +14,8 @@ export const page: Page = {
   },
   movies: movies
 };
+
+export const search: SearchParameters = filmsJson.search;
 
 export const template = (html: string): string =>
   `<!DOCTYPE html>

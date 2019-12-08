@@ -1,6 +1,6 @@
 export enum SearchBy {
-  TITLE,
-  GENRES
+  TITLE = 0,
+  GENRES = 1
 }
 
 export enum SortBy {
@@ -25,7 +25,7 @@ export type Movie = {
   budget: number;
   revenue: number;
   runtime: number;
-  genres: Set<string>;
+  genres: string[];
 };
 
 export type Page = {
@@ -52,3 +52,23 @@ export type Film = {
 export type SearchQuery = {
   query: string;
 };
+
+export enum SortOrder {
+  DESC = "desc",
+  ASC = "asc"
+}
+
+export type SearchParameters = {
+  sortBy: SortBy;
+  sortOrder: SortOrder;
+  query: string;
+  searchBy: SearchBy;
+  filter: Array<string>;
+  offset: number;
+  limit: number;
+};
+
+export enum ButtonType {
+  submit = "submit",
+  button = "button"
+}

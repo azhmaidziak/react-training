@@ -1,17 +1,17 @@
 import * as React from "react";
-import {Provider} from "react-redux";
-import {createStore} from "redux";
-import {page} from "../../preload";
+import { Provider } from "react-redux";
+import { page } from "../../preload";
 import SearchContainer from "./SearchContainer";
 import MoviesContainer from "./MoviesContainer";
-import {ErrorBoundary} from "../renders";
+import ErrorBoundary from "../renders/ErrorBoundary";
+import configureStore from "../../store/configureStore";
+import * as styles from "./App.module.sass";
 
-const store = createStore(e => e, page);
-export default class AppDom extends React.Component {
+export default class AppDom extends React.Component<{ init: boolean }> {
   render(): React.ReactNode {
     return (
-      <Provider store={store}>
-        <div className="app_body">
+      <Provider store={configureStore(page, this.props.init)}>
+        <div className={styles.app_body}>
           <ErrorBoundary>
             <SearchContainer />
             <MoviesContainer />

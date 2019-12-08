@@ -3,6 +3,7 @@
 exports[`Button Element Test Test render correctly 1`] = `
 <button
   onClick={[MockFunction]}
+  type="button"
 >
   Button
 </button>

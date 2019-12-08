@@ -54,5 +54,14 @@
       ],
       "runtime": 152
     }
-  ]
+  ],
+  "search": {
+    "sortBy": "",
+    "sortOrder": "",
+    "query": "",
+    "searchBy": "",
+    "filter": [],
+    "offset": 0,
+    "limit": 10
+  }
 }

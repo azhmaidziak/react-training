@@ -4,15 +4,15 @@ import Radio, { RadioInput } from "./Radio";
 const RadioGroup = ({
   className,
   inputs,
-  onClick
+  onChange
 }: {
   className: string;
   inputs: RadioInput[];
-  onClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }): React.ReactElement => (
   <div className={className}>
     {inputs.map((input: RadioInput) => (
-      <Radio key={input.value} input={input} onClick={onClick} />
+      <Radio key={input.value} input={input} onChange={onChange} />
     ))}
   </div>
 );
