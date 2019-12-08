@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Movie } from "../../models";
 import MovieTile from "./elements/MovieTile";
-import * as styles from "./MoviesResultPane.module.sass"
+import * as styles from "./MoviesResultPane.module.sass";
 
 const MoviesResultPane = (props: { movies: Movie[] }): React.ReactElement => {
   const movies: Movie[] = props.movies;

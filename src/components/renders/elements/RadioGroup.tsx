@@ -8,7 +8,7 @@ const RadioGroup = ({
 }: {
   className: string;
   inputs: RadioInput[];
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }): React.ReactElement => (
   <div className={className}>
     {inputs.map((input: RadioInput) => (

@@ -13,7 +13,7 @@ const MovieMapper = function(film: Film): Movie {
     budget: film.budget,
     revenue: film.revenue,
     runtime: film.runtime,
-    genres: new Set(film.genres)
+    genres: film.genres
   };
 };
 

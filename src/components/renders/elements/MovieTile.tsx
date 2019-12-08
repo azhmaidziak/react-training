@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Movie } from "../../../models";
-import * as styles from "./MovieTile.module.sass"
+import * as styles from "./MovieTile.module.sass";
 
 const MovieTile = (props: { movie: Movie }): React.ReactElement => {
   const { title, posterPath, genres, releaseDate } = props.movie;
@@ -10,7 +10,7 @@ const MovieTile = (props: { movie: Movie }): React.ReactElement => {
       <p>
         <span>{title}</span> <span>{releaseDate.getDate()}</span>
       </p>
-      <p>{genres}</p>
+      <p>{genres.join(" & ")}</p>
     </div>
   );
 };

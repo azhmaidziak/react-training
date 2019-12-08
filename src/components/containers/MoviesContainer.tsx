@@ -1,50 +1,46 @@
 import * as React from "react";
-import {connect} from "react-redux";
-import {Movie, Page, SortBy} from "../../models";
+import { connect } from "react-redux";
+import { Movie, Page, SortBy } from "../../models";
+import { MoviesComparatorFactory } from "../../functions";
 import MoviesResultPane from "../renders/MoviesResultPane";
 import ResultSummaryBar from "../renders/ResultSummaryBar";
 import { sortedBy } from "./options.json";
 
-function map({movies}: Page): { movies: Movie[] } {
-    return {movies: movies};
+function map({ movies }: Page): { movies: Movie[] } {
+  return { movies: movies };
 }
 
-function getComparator(sortBy: SortBy): (one: Movie, two: Movie) => number {
-    switch (sortBy) {
-        case SortBy.RATING:
-            return (one, two): number => one.voteAverage - two.voteAverage;
-        case SortBy.REALIZE_DATE:
-            return (one, two): number =>
-                    one.releaseDate.getTime() - two.releaseDate.getTime();
-        default:
-            return (one, two): number => two.id - one.id;
-    }
-}
+class MoviesContainer extends React.Component<
+  { movies: Movie[] },
+  { sortBy: SortBy }
+> {
+  constructor(props: { movies: Movie[] }) {
+    super(props);
+    this.state = { sortBy: SortBy.REALIZE_DATE };
+  }
 
-class MoviesContainer extends React.Component<{ movies: Movie[] },
-        { sortBy: SortBy }> {
-    constructor(props: { movies: Movie[] }) {
-        super(props);
-        this.state = {sortBy: SortBy.REALIZE_DATE};
-    }
+  onClickToChoose = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    this.setState({ sortBy: Number.parseInt(event.currentTarget.value) });
+  };
 
-    onClickToChoose = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({sortBy: Number.parseInt(event.currentTarget.value)});
-    };
-
-    render(): React.ReactNode {
-        const movies = this.props.movies.sort(getComparator(this.state.sortBy));
-        return (
-                <React.Fragment>
-                    <ResultSummaryBar
-                            options={sortedBy}
-                            count={movies.length}
-                            onClickToChoose={this.onClickToChoose}
-                    />
-                    <MoviesResultPane movies={movies}/>
-                </React.Fragment>
-        );
-    }
+  render(): React.ReactNode {
+    const movies = this.props.movies;
+    return (
+      <React.Fragment>
+        <ResultSummaryBar
+          options={sortedBy}
+          count={movies.length}
+          onClickToChoose={this.onClickToChoose}
+        />
+        <MoviesResultPane
+          movies={movies.sort(
+            MoviesComparatorFactory.getComparator(this.state.sortBy)
+          )}
+        />
+      </React.Fragment>
+    );
+  }
 }
 
 export default connect(map)(MoviesContainer);
