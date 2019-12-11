@@ -10,8 +10,10 @@
     "build:frontend:development": "webpack --mode development --env.development --config=./webpack.frontend.js",
     "build:backend:development": "webpack --mode development --env.development --config=./webpack.backend.js",
     "check-style": "eslint --fix webpack.backend.js webpack.frontend.js ./src/**/*.tsx ./src/**/*.ts",
-    "test": "jest",
-    "test-update": "jest --updateSnapshot"
+    "test": "jest --coverage",
+    "test-update": "jest --updateSnapshot",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "jest": {
     "setupFiles": [
@@ -81,6 +83,7 @@
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
+    "cypress": "^3.7.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.6.0",

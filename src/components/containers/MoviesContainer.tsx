@@ -20,7 +20,6 @@ class MoviesContainer extends React.Component<
   }
 
   onClickToChoose = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    event.preventDefault();
     this.setState({ sortBy: Number.parseInt(event.currentTarget.value) });
   };
 

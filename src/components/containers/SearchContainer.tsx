@@ -14,12 +14,10 @@ class SearchContainer extends React.Component<
     this.state = { query: props.query, searchBy: SearchBy.TITLE };
   }
   onChangeValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    event.preventDefault();
     this.setState({ query: event.target.value, searchBy: this.state.searchBy });
   };
 
   onClickToChoose = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    event.preventDefault();
     this.setState({
       query: this.state.query,
       searchBy: parseInt(event.target.value)
@@ -27,7 +25,6 @@ class SearchContainer extends React.Component<
   };
 
   onClickToSearch = (event: MouseEvent): void => {
-    event.preventDefault();
     console.log(this.state);
   };
 
