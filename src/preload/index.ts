@@ -1,9 +1,21 @@
-import { Page } from "../models";
+import { Movie, Page, SearchParameters } from "../models";
+import { MovieMapper, createBatchProcessor } from "../functions";
+import * as filmsJson from "./films.json";
+
+// todo: find and replace to lib implementation
+const movies: Movie[] = createBatchProcessor(MovieMapper).apply(
+  filmsJson.payload
+);
 
 export const page: Page = {
-  menu: { items: [{ key: "1", text: "Menu 1" }, { key: "2", text: "Menu 2" }] },
-  body: { bodyText: "Hello React!" }
+  title: "Something",
+  top: {
+    query: "string"
+  },
+  movies: movies
 };
+
+export const search: SearchParameters = filmsJson.search;
 
 export const template = (html: string): string =>
   `<!DOCTYPE html>
