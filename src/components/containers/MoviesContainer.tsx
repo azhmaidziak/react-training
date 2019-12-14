@@ -2,8 +2,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Movie, Page, SortBy } from "../../models";
 import { MoviesComparatorFactory } from "../../functions";
-import MoviesResultPane from "../renders/MoviesResultPane";
-import ResultSummaryBar from "../renders/ResultSummaryBar";
+import { MoviesResultPane, ResultSummaryBar } from "../renders";
+
 import { sortedBy } from "./options.json";
 
 function map({ movies }: Page): { movies: Movie[] } {
@@ -20,7 +20,6 @@ class MoviesContainer extends React.Component<
   }
 
   onClickToChoose = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    event.preventDefault();
     this.setState({ sortBy: Number.parseInt(event.currentTarget.value) });
   };
 
