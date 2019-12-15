@@ -1,15 +1,17 @@
 import * as React from "react";
-import { connect } from "react-redux";
-import { Page, SearchBy, SearchQuery } from "../../models";
+import {connect} from "react-redux";
+import { Page, SearchBy } from "../../models";
 import { SearchPane } from "../renders";
 import { searchBy } from "./options.json";
 import { MouseEvent } from "react";
+import {createSearch} from "../../functions/store/actions";
+import {Dispatch} from "redux";
 
 class SearchContainer extends React.Component<
-  { query: string },
+  { query: string, searchRequest: (request: { query:string , searchBy: SearchBy}) => void },
   SearchRequest
 > {
-  constructor(props: { query: string }) {
+  constructor(props: { query: string, searchRequest: (request: { query:string , searchBy: SearchBy}) => void}) {
     super(props);
     this.state = { query: props.query, searchBy: SearchBy.TITLE };
   }
@@ -25,7 +27,7 @@ class SearchContainer extends React.Component<
   };
 
   onClickToSearch = (event: MouseEvent): void => {
-    console.log(this.state);
+      this.props.searchRequest(this.state)
   };
 
   render(): React.ReactElement {
@@ -42,11 +44,16 @@ class SearchContainer extends React.Component<
 }
 
 function map(state: Page): { query: string } {
-  const { query } = state.top as SearchQuery;
-  return { query: query };
+  return { query: state.top.query };
 }
 
-export default connect(map)(SearchContainer);
+function dispatchToProps(dispatch:  Dispatch) {
+    return {
+        searchRequest: (request: { query:string , searchBy: SearchBy})=> dispatch(createSearch(request))
+    }
+}
+
+export default connect(map, dispatchToProps)(SearchContainer);
 
 type SearchRequest = {
   query: string;
