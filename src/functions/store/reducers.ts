@@ -1,9 +1,10 @@
-import {Movie, Page, PageTop} from "../../models";
+import {Movie, Page, PageTop, View} from "../../models";
 import {combineReducers} from "redux";
 import * as preload from "../../preload";
 import {createBatchProcessor, MovieMapper} from "../index";
-import {ActionTypes, FETCH_COMPLETED, SEARCH_REQUEST} from "./types";
-import { routerReducer } from 'react-router-redux'
+import {ActionTypes, FETCH_COMPLETED, SEARCH_REQUEST, SHOW_MOVIE_DETAILS} from "./types";
+import { routerMiddleware, connectRouter, RouterState } from 'connected-react-router/immutable';
+import history from "./history";
 
 const page: Page = Object.assign(preload.page, {movies: preload.page.movies});
 const assignMovies = function (state: Movie[] = page.movies, action: ActionTypes): Movie[] {
@@ -14,10 +15,12 @@ const assignMovies = function (state: Movie[] = page.movies, action: ActionTypes
 };
 
 const top = function (state: PageTop = page.top, action: ActionTypes): PageTop {
-    if (action.type === SEARCH_REQUEST) {
-        console.log(action);
+    switch (action.type) {
+        case SHOW_MOVIE_DETAILS:
+          return Object.assign(state, {movie: action.payload});
+        default:
+            return state;
     }
-    return state;
 };
 const title = function (state: string = page.title, action: { type: string }): string {
     if (action.type === SEARCH_REQUEST) {
@@ -26,11 +29,19 @@ const title = function (state: string = page.title, action: { type: string }): s
     return state;
 };
 
+const view = function (state: View = page.view, action: { type: string }): View {
+    if (action.type === SHOW_MOVIE_DETAILS) {
+        return View.MOVIE;
+    }
+    return state;
+};
+
 const rootReducer = combineReducers({
     movies: assignMovies,
     top: top,
     title: title,
-    routing: routerReducer
+    view: view,
+    router : connectRouter(history)
 });
 
 export default rootReducer;

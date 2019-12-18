@@ -1,5 +1,5 @@
 import {Film, Movie, SearchBy} from "../../models";
-import {ActionTypes, FETCH_COMPLETED, SEARCH_REQUEST, SHOW_MOVIE_DETAILS} from "./types";
+import {ActionTypes, FETCH_COMPLETED, SEARCH_REQUEST, SHOW_MOVIE_DETAILS, SHOW_SEARCH} from "./types";
 
 const createSearch = (request: { query: string, searchBy: SearchBy }): ActionTypes => ({
     type: SEARCH_REQUEST,
@@ -8,6 +8,7 @@ const createSearch = (request: { query: string, searchBy: SearchBy }): ActionTyp
         searchBy: request.searchBy
     }
 });
+
 
 const fetchCompleted = (films: Film[]): ActionTypes => ({
     type: FETCH_COMPLETED,
@@ -19,9 +20,14 @@ const showMovieDetails = (movie: Movie):ActionTypes => ({
     payload: movie
 });
 
+const showSearch = (): ActionTypes => ({
+    type: SHOW_SEARCH
+});
+
 export {
     createSearch as createSearch,
     fetchCompleted as fetchCompleted,
-    showMovieDetails as showMovieDetails
+    showMovieDetails as showMovieDetails,
+    showSearch as showSearch
 }
 

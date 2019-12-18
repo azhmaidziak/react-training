@@ -55,7 +55,9 @@
     "sass-loader": "^8.0.0",
     "react-router-dom": "latest",
     "react-router-redux": "latest",
-    "react-router-config": "latest"
+    "react-router-config": "latest",
+    "history": "latest",
+    "connected-react-router": "latest"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.4",

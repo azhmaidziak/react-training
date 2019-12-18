@@ -1,8 +1,10 @@
 import {fetchCompleted} from "./actions";
-import {SEARCH_REQUEST} from "./types";
+import {SEARCH_REQUEST, SHOW_MOVIE_DETAILS, SHOW_SEARCH} from "./types";
 import {SearchBy} from "../../models";
 import {Middleware} from "redux";
-
+import { push } from 'react-router-redux'
+import history from "./history"
+import { routerMiddleware, connectRouter, RouterState } from 'connected-react-router/immutable';
 const map = function (searchBy: SearchBy): string {
     switch (searchBy) {
         case SearchBy.GENRES:
@@ -35,7 +37,23 @@ const fetchMovies: Middleware = store => next => action => {
     return next(action)
 };
 
+const redirectToMovie: Middleware = store => next => action => {
+    if (action.type === SHOW_MOVIE_DETAILS) {
+        history.push('/movie');
+    }
+    return next(action)
+};
+const redirectToSearch: Middleware = store => next => action => {
+    if (action.type === SHOW_SEARCH) {
+        history.push('/search');
+    }
+    return next(action)
+};
+
+
 export {
     logger as logger,
-    fetchMovies as fetchMovies
+    fetchMovies as fetchMovies,
+    redirectToMovie as redirectToMovie,
+    redirectToSearch as redirectToSearch
 }

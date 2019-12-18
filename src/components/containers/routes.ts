@@ -1,17 +1,15 @@
-import AppDom from "./AppDom";
 import SearchContainer from "./SearchContainer";
-import MoviesContainer from "./MoviesContainer";
+import MoviesDetailContainer from "./MovieDetailContainer";
 
-const routes = [
-    { component: AppDom,
-        routes: [
-            { path: '/search:filter?',
+const routes =[
+            {
+                path: '/search:filter?',
                 component: SearchContainer
             },
-            { path: '/movie:filter?',
-                component: MoviesContainer
+            {
+                path: '/movie:filter?',
+                component: MoviesDetailContainer
             }
-        ]
-    }
-];
+        ];
+
 export default routes;
