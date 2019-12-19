@@ -1,6 +1,6 @@
 describe('My First Test', function() {
     beforeEach(() => {
-        cy.visit('localhost:5555')
+        cy.visit('localhost:5555/search')
     });
 
     it('Visits the Kitchen Sink', function() {
